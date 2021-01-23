@@ -1,0 +1,37 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\DeputatsSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Депутатлар';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="deputats-index">
+    <p>
+        <?= Html::a('Янги кушиш', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            // 'user_id',
+            'name',
+            'okrug_id',
+            'info1',
+            //'desc:ntext',
+            //'add_info',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
+</div>
