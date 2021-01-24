@@ -27,7 +27,7 @@ class DeputatsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','view'],
+                        'actions' => ['index','guestview'],
                         'roles' => ['?'],
                     ],
                     [
@@ -90,6 +90,13 @@ class DeputatsController extends Controller
         ]);
     }
 
+    public function actionGuestview($id)
+    {
+        return $this->render('guestview', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
     /**
      * Creates a new Deputats model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -108,7 +115,10 @@ class DeputatsController extends Controller
                 $user->setPassword($model->password);
                 $user->generateAuthKey();
                 if($user->save()){
-                    $model->user_id = $user->id;    
+                    $model->user_id = $user->id;
+                    $auth = \Yii::$app->authManager;
+                    $authorRole = $auth->getRole('deputat');
+                    $auth->assign($authorRole, $user->id);  
                     if($model->save()){
                         return $this->redirect(['view', 'id' => $model->id]);    
                     }

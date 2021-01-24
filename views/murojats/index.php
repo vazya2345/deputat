@@ -24,7 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
+            // return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
+            $str = '<div class="card">
+                        <div class="card-body">
+                            <p>'.Html::a(Html::encode($model->murojatchi_name), ['view', 'id' => $model->id]).'</p>
+                            '.Html::encode($model->murojat_text).'
+                        </div>
+                    </div>
+            ';
+            return $str;
         },
     ]) ?>
 

@@ -71,4 +71,15 @@ class Murojats extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Deputats::className(), ['id' => 'deputat_id']);
     }
+
+    public static function getStatusName($id){
+        $arr = [
+            1 => 'Янги',
+            2 => 'Куриб чикилмокда',
+            3 => 'Куриб чикилди',
+            4 => 'Каноатлантирилди',
+            5 => 'Каноатлантирилмади',
+        ];
+        return $arr[$id];
+    }
 }

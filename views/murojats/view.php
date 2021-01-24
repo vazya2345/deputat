@@ -2,43 +2,52 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use app\models\Deputats;
+use app\models\Murojats;
 /* @var $this yii\web\View */
 /* @var $model app\models\Murojats */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Murojats', 'url' => ['index']];
+$this->title = $model->murojatchi_name;
+$this->params['breadcrumbs'][] = ['label' => 'Мурожаатлар руйхати', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="murojats-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+<div class="murojats-view card">
+    <div class="card-body">
+<?php
+    if(\Yii::$app->user->can('viewAdminPage')){
+?>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?= Html::a('Узгартириш', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
     </p>
+<?php
+    }
+?>
+
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'deputat_id',
+            'deputat_id'=>[
+                'attribute'=>'deputat_id',
+                'value'=>function($model){
+                    return Deputats::getName($model->deputat_id);
+                }
+            ],
             'murojatchi_name',
             'murojatchi_contact',
             'murojat_text:ntext',
             'javob:ntext',
-            'status',
+            'status'=>[
+                'attribute'=>'status',
+                'value'=>function($model){
+                    return Murojats::getStatusName($model->status);
+                }
+            ],
             'create_date',
             'mod_date',
         ],
     ]) ?>
-
+</div>
 </div>

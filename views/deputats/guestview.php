@@ -15,26 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="deputats-view card">
 <div class="card-body">
     <p>
-        <?= Html::a('Узгартириш', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Учириш', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Ишончингиз комилми?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?= Html::a('Мурожаат йуллаш', ['murojats/create', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'user_id'=>[
-                'attribute'=>'user_id',
-                'value'=>function($model){
-                    return User::getLogin($model->user_id);
-                }
-            ],
             'name',
             'okrug_id'=>[
                 'attribute'=>'okrug_id',

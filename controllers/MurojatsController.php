@@ -66,8 +66,14 @@ class MurojatsController extends Controller
     {
         $model = new Murojats();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->status= 1;
+            $model->create_date = date("Y-m-d H:i:s");
+            $model->mod_date = $model->create_date;
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);    
+            }
+            
         }
 
         return $this->render('create', [

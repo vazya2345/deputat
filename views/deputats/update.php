@@ -5,16 +5,14 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Deputats */
 
-$this->title = 'Update Deputats: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Deputats', 'url' => ['index']];
+$this->title = 'Узгартириш';
+$this->params['breadcrumbs'][] = ['label' => 'Депутатлар руйхати', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Узгартириш';
 ?>
 <div class="deputats-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
+    <?= $this->render('_form_update', [
         'model' => $model,
     ]) ?>
 

@@ -96,6 +96,16 @@ class Deputats extends \yii\db\ActiveRecord
         }
     }
 
+    public static function getName($id){
+        $model = self::findOne($id);
+        if($model){
+            return $model->name;
+        }
+        else{
+            return 'ФИШ топилмади хозирча';
+        }
+    }
+
     public static function getOkrugName($user_id){
         $model = self::find()->where(['user_id'=>$user_id])->one();
         if($model){
@@ -104,6 +114,14 @@ class Deputats extends \yii\db\ActiveRecord
         else{
             return 'Округ маълумоти';
         }
+    }
+
+    public static function getOkrugNameByOkrugid($id){
+        $arr = [
+            1 => 'Тошкент',
+            60 => 'Андижон',
+        ];
+        return $arr[$id];
     }
 
     public static function getAll(){

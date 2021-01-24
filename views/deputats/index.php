@@ -17,7 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
+        	$str = '<div class="card">
+        				<div class="card-body">
+        					<p>'.Html::a(Html::encode($model->name), ['guestview', 'id' => $model->id]).'</p>
+        					'.Html::encode($model->desc).'
+        				</div>
+        			</div>
+        	';
+            return $str;
         },
     ]) ?>
 
